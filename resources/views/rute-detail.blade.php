@@ -356,10 +356,47 @@
                 updateSummaryAndPrice();
             });
             btnBeli.addEventListener('click', () => {
-                const total = parseInt(totalPriceEl.innerText.replace(/[^\d]/g, "")) || 0;
-                if (total === 0) { alert('Silakan pilih paket terlebih dahulu.'); return; }
-                alert(`Pesanan untuk {{ addslashes($bundle->nama_bundle) }} dengan total ${rupiah(total)} akan diproses!`);
-            });
+            // 1. Ambil nilai total harga dari elemen dan bersihkan dari format Rupiah (menghapus "IDR ", ".", dll.)
+            const totalPriceEl = document.getElementById('totalPrice');
+            const total = parseInt(totalPriceEl.innerText.replace(/[^\d]/g, "")) || 0;
+
+            // 2. Validasi: Jangan lanjutkan jika tidak ada paket yang dipilih (total harga 0)
+            if (total === 0) {
+                alert('Silakan pilih paket terlebih dahulu sebelum melanjutkan.');
+                return; // Hentikan eksekusi fungsi
+            }
+
+            // 3. Ambil teks ringkasan dari elemen terkait untuk ditampilkan di halaman selanjutnya
+            const summaryPaketEl = document.getElementById('summaryPaket');
+            const summaryHotelEl = document.getElementById('summaryHotel');
+            const summaryRestoEl = document.getElementById('summaryResto');
+
+            // 4. Siapkan objek data (checkoutData) untuk dikirim ke halaman pembayaran
+            const checkoutData = {
+                // ID Bundle, penting untuk disimpan ke database
+                bundleId: {{ $bundle->id_bundle }}, 
+                
+                // Nama Rute untuk ditampilkan
+                routeName: '{{ addslashes($bundle->nama_bundle) }}',
+                
+                // Detail ringkasan pesanan untuk ditampilkan ulang
+                summary: {
+                    paket: summaryPaketEl.innerText,
+                    hotel: summaryHotelEl.innerText,
+                    resto: summaryRestoEl.innerText,
+                },
+
+                // Total harga final
+                total: total,
+            };
+
+            // 5. Simpan objek data sebagai string JSON ke sessionStorage browser
+            // Data ini akan tetap ada selama tab browser tidak ditutup
+            sessionStorage.setItem('checkout', JSON.stringify(checkoutData));
+
+            // 6. Arahkan (redirect) pengguna ke halaman pembayaran
+            window.location.href = '{{ route("payment.create") }}';
+        });
             
             const initStarRating = () => {
                 const stars = Array.from(document.querySelectorAll('.star-rating .star'));

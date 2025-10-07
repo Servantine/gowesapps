@@ -67,6 +67,12 @@
                     <i class="fa-solid fa-hotel me-2"></i>Penginapan
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('bookings.*') ? 'active' : '' }}"
+                    href="{{ route('bookings.index') }}">
+                    <i class="fa-solid fa-file-invoice-dollar me-2"></i>Pemesanan
+                </a>
+            </li>
             <li>
                 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                     @csrf

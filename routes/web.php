@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\BundleController;
 use App\Http\Controllers\Admin\DestinasiController;
 use App\Http\Controllers\Admin\PenginapanController;
 use App\Http\Controllers\Admin\RestoController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\BookingController;
 
 
 /*
@@ -37,6 +39,12 @@ Route::get('/detailrute', [PageController::class, 'detailrute'])->name('visitor.
 Route::get('/pembayaran', [PageController::class, 'pembayaran'])->name('visitor.pembayaran')->middleware('guest');
 Route::post('/detailrute/{bundle}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
+
+Route::get('/pembayaran', [PaymentController::class, 'create'])->name('payment.create');
+Route::post('/pembayaran', [PaymentController::class, 'store'])->name('payment.store');
+Route::get('/pembayaran/sukses', [PaymentController::class, 'success'])->name('payment.success');
+
+
 Route::get('/user/home', [PageController::class, 'userHome'])->name('user.home');
 
 Route::get('/visitor', [PageController::class, 'visitor'])->name('visitor.welcome');
@@ -60,4 +68,6 @@ Route::middleware(['role:admin'])->prefix('admin')->group(function () {
     Route::resource('restos', RestoController::class);
     Route::resource('destinasis', DestinasiController::class);
     Route::resource('penginapans', PenginapanController::class);
+    Route::resource('bookings', BookingController::class);
+    Route::patch('bookings/{booking}/status', [BookingController::class, 'updateStatus'])->name('bookings.updateStatus');
 });

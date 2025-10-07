@@ -71,4 +71,8 @@ class BundleController extends Controller
         $bundle->delete();
         return redirect()->route('bundles.index')->with('success', 'Bundle berhasil dihapus!');
     }
-}
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'bundle_id', 'id_bundle');
+    }
+    }
