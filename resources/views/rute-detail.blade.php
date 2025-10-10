@@ -42,7 +42,8 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
                 <li class="nav-item"><a class="nav-link active" href="{{ route('rutelist') }}">Rute Sepeda</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Kontak Kami</a></li>
+                <li class="nav-item"><a class="nav-link" href="/kontak">Kontak Kami</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Komunitas</a></li>
             </ul>
         </div>
     </nav>
@@ -69,19 +70,6 @@
 
         <div class="row g-4">
             <div class="col-md-6">
-                <img src="{{ $bundle->gambar }}" class="img-fluid rounded shadow" alt="{{ $bundle->nama_bundle }}">
-            </div>
-            <div class="col-md-6">
-                <h2 class="fw-bold">{{ $bundle->nama_bundle }}</h2>
-                <p class="text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>{{ $bundle->kabupaten }}</p>
-                <p class="lead">{{ $bundle->deskripsi ?? 'Deskripsi untuk rute ini belum tersedia.' }}</p>
-                <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
-                    <span><i class="bi bi-arrow-left-right me-1"></i>{{ $bundle->jarak }} km</span>
-                    <span><i class="bi bi-pin-map-fill me-1"></i>{{ $bundle->titik_kumpul }}</span>
-                    <span class="badge difficulty-badge" data-level="{{ $bundle->kesulitan }}">{{ $bundle->kesulitan }}</span>
-                    <span class="text-warning small">{!! renderStars($bundle->rating) !!}</span>
-                </div>
-
                 @if($bundle->destinasis->isNotEmpty())
                 <h3 class="my-3">Galeri Destinasi di Rute Ini</h3>
                 <div id="destinasiCarousel" class="carousel slide shadow-lg rounded" data-bs-ride="carousel">
@@ -99,6 +87,19 @@
                     <button class="carousel-control-next" type="button" data-bs-target="#destinasiCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
                 </div>
                 @endif
+            </div>
+            <div class="col-md-6">
+                <h2 class="fw-bold">{{ $bundle->nama_bundle }}</h2>
+                <p class="text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>{{ $bundle->kabupaten }}</p>
+                <p class="lead">{{ $bundle->deskripsi ?? 'Deskripsi untuk rute ini belum tersedia.' }}</p>
+                <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                    <span><i class="bi bi-arrow-left-right me-1"></i>{{ $bundle->jarak }} km</span>
+                    <span><i class="bi bi-pin-map-fill me-1"></i>{{ $bundle->titik_kumpul }}</span>
+                    <span class="badge difficulty-badge" data-level="{{ $bundle->kesulitan }}">{{ $bundle->kesulitan }}</span>
+                    <span class="text-warning small">{!! renderStars($bundle->rating) !!}</span>
+                </div>
+
+                
             </div>
         </div>
         <br><br>

@@ -33,6 +33,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/', [PageController::class, 'visitor'])->name('visitor.welcome')->middleware('guest');
+Route::get('/kontak', [PageController::class, 'kontak'])->name('visitor.kontak')->middleware('guest');
+
+
+
 Route::get('/rutelist', [RouteListController::class, 'index'])->name('rutelist');
 Route::get('/detailrute/{bundle}', [RouteListController::class, 'show'])->name('rute.detail');
 Route::get('/detailrute', [PageController::class, 'detailrute'])->name('visitor.rutelist')->middleware('guest');
