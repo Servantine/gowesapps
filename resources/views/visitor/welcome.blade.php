@@ -135,6 +135,7 @@
                     <li class="nav-item"><a class="nav-link active" href="/">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="/rutelist">Rute Sepeda</a></li>
                     <li class="nav-item"><a class="nav-link" href="/kontak">Kontak Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/saran-rute">Berikan Saran Rute</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Komunitas</a></li>
                 </ul>
             </div>
@@ -165,8 +166,6 @@
 
                     <div class="card ad-placeholder position-relative">
 
-                        <button type="button" class="btn-close position-absolute top-0 end-0 m-2" style="z-index: 10;"
-                            aria-label="Close"></button>
 
                         <p>advertisement</p>
 
@@ -422,8 +421,7 @@
 
                     <div class="card ad-placeholder position-relative">
 
-                        <button type="button" class="btn-close position-absolute top-0 end-0 m-2" style="z-index: 10;"
-                            aria-label="Close"></button>
+
                         <p>advertisement</p>
 
                         <img src="https://i.pinimg.com/736x/6c/5e/43/6c5e432be59e5fa5fdb7cd36410a2b51.jpg"
@@ -443,24 +441,3 @@
 
 </html>
 
-<script>
-    // Menunggu hingga seluruh halaman HTML selesai dimuat
-    document.addEventListener('DOMContentLoaded', function () {
-        
-        // 1. Cari elemen aside berdasarkan ID yang kita buat tadi
-        const adContainer = document.getElementById('sidebarAd');
-
-        // Pastikan elemennya ada sebelum melanjutkan
-        if (adContainer) {
-            // 2. Cari tombol close di dalam elemen aside tersebut
-            const closeButton = adContainer.querySelector('.btn-close');
-
-            // 3. Tambahkan event listener: "Jika tombol close di-klik"
-            closeButton.addEventListener('click', function () {
-                
-                // 4. Tambahkan class 'd-none' dari Bootstrap untuk menyembunyikan aside
-                adContainer.classList.add('d-none');
-            });
-        }
-    });
-</script>

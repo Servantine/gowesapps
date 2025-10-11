@@ -25,8 +25,9 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="{{ route('rutelist') }}">Rute Sepeda</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/rutelist">Rute Sepeda</a></li>
                     <li class="nav-item"><a class="nav-link" href="/kontak">Kontak Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/saran-rute">Berikan Saran Rute</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Komunitas</a></li>
                 </ul>
             </div>

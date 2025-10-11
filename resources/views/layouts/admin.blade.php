@@ -73,6 +73,12 @@
                     <i class="fa-solid fa-file-invoice-dollar me-2"></i>Pemesanan
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('suggestions.*') ? 'active' : '' }}"
+                    href="{{ route('suggestions.index') }}">
+                    <i class="fa-solid fa-file-invoice-dollar me-2"></i>Suggestions
+                </a>
+            </li>
             <li>
                 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                     @csrf

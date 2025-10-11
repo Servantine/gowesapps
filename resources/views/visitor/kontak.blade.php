@@ -52,6 +52,7 @@
                     <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="/rutelist">Rute Sepeda</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/kontak">Kontak Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/saran-rute">Berikan Saran Rute</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Komunitas</a></li>
                 </ul>
             </div>

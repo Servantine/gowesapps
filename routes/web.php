@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PenginapanController;
 use App\Http\Controllers\Admin\RestoController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\RouteSuggestionController;
 
 
 /*
@@ -32,15 +33,17 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::get('/', [PageController::class, 'visitor'])->name('visitor.welcome')->middleware('guest');
-Route::get('/kontak', [PageController::class, 'kontak'])->name('visitor.kontak')->middleware('guest');
+Route::get('/', [PageController::class, 'visitor'])->name('visitor.welcome');
+Route::get('/kontak', [PageController::class, 'kontak'])->name('visitor.kontak');
 
+Route::get('/saran-rute', [RouteSuggestionController::class, 'create'])->name('suggestions.create');
+Route::post('/saran-rute', [RouteSuggestionController::class, 'store'])->name('suggestions.store');
 
 
 Route::get('/rutelist', [RouteListController::class, 'index'])->name('rutelist');
 Route::get('/detailrute/{bundle}', [RouteListController::class, 'show'])->name('rute.detail');
-Route::get('/detailrute', [PageController::class, 'detailrute'])->name('visitor.rutelist')->middleware('guest');
-Route::get('/pembayaran', [PageController::class, 'pembayaran'])->name('visitor.pembayaran')->middleware('guest');
+Route::get('/detailrute', [PageController::class, 'detailrute'])->name('visitor.rutelist');
+Route::get('/pembayaran', [PageController::class, 'pembayaran'])->name('visitor.pembayaran');
 Route::post('/detailrute/{bundle}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 
@@ -74,4 +77,7 @@ Route::middleware(['role:admin'])->prefix('admin')->group(function () {
     Route::resource('penginapans', PenginapanController::class);
     Route::resource('bookings', BookingController::class);
     Route::patch('bookings/{booking}/status', [BookingController::class, 'updateStatus'])->name('bookings.updateStatus');
+    Route::get('/saran-rute', [RouteSuggestionController::class, 'adminIndex'])->name('suggestions.index');
+    Route::patch('/saran-rute/{suggestion}/status', [RouteSuggestionController::class, 'updateStatus'])->name('suggestions.updateStatus');
+    Route::delete('/saran-rute/{suggestion}', [RouteSuggestionController::class, 'destroy'])->name('suggestions.destroy');
 });
